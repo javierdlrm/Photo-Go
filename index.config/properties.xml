@@ -13,7 +13,6 @@
 <entry key="9.extractor">net.semanticmetadata.lire.imageanalysis.features.global.Tamura</entry>
 <entry key="10.extractor">net.semanticmetadata.lire.imageanalysis.features.global.Gabor</entry>
 <entry key="11.extractor">net.semanticmetadata.lire.imageanalysis.features.global.JpegCoefficientHistogram</entry>
-<entry key="12.extractor">net.semanticmetadata.lire.aggregators.BOVW</entry>
 <entry key="13.extractor">net.semanticmetadata.lire.imageanalysis.features.global.joint.JointHistogram</entry>
 <entry key="14.extractor">net.semanticmetadata.lire.imageanalysis.features.global.OpponentHistogram</entry>
 <entry key="15.extractor">net.semanticmetadata.lire.imageanalysis.features.global.LuminanceLayout</entry>
@@ -30,6 +29,7 @@
 <entry key="0.info.2">512</entry>
 <entry key="5">global</entry>
 <entry key="16">global</entry>
+<entry key="0.info.1">net.semanticmetadata.lire.aggregators.BOVW</entry>
 <entry key="4">global</entry>
 <entry key="15">global</entry>
 <entry key="0.info.0">liredemo.indexing.MetadataBuilder</entry>

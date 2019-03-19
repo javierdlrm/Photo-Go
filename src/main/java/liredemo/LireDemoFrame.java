@@ -161,10 +161,6 @@ public class LireDemoFrame extends javax.swing.JFrame {
 
         sameSearchMenu = new javax.swing.JMenu();
         searchMpeg7Descriptors = new javax.swing.JMenuItem();
-        searchColorLayout = new javax.swing.JMenuItem();
-        searchEdgeHistogram = new javax.swing.JMenuItem();
-        searchScalableColor = new javax.swing.JMenuItem();
-        searchAutoColorCorrelation = new javax.swing.JMenuItem();
         mosaicButtons = new javax.swing.ButtonGroup();
         browseImagePanel = new liredemo.ImagePanel();
         topPane = new javax.swing.JPanel();
@@ -251,17 +247,26 @@ public class LireDemoFrame extends javax.swing.JFrame {
         viewMenuOptions = new javax.swing.JMenuItem();
         devMenu = new javax.swing.JMenu();
         researchMenu = new javax.swing.JMenu();
+
+        clSearch = new javax.swing.JMenuItem();
+        scSearch = new javax.swing.JMenuItem();
+        ehSearch = new javax.swing.JMenuItem();
         accSearch = new javax.swing.JMenuItem();
         ceddSearch = new javax.swing.JMenuItem();
-        clSearch = new javax.swing.JMenuItem();
-        ehSearch = new javax.swing.JMenuItem();
         fcthSearch = new javax.swing.JMenuItem();
+        jcdSearch = new javax.swing.JMenuItem();
+        chSearch = new javax.swing.JMenuItem();
+        ttSearch = new javax.swing.JMenuItem();
+        gtSearch = new javax.swing.JMenuItem();
+        jpegchSearch = new javax.swing.JMenuItem();
+        jhSearch = new javax.swing.JMenuItem();
+        ohSearch = new javax.swing.JMenuItem();
+        llSearch = new javax.swing.JMenuItem();
+        phogSearch = new javax.swing.JMenuItem();
+        accidSearch = new javax.swing.JMenuItem();
         ocrSearch = new javax.swing.JMenuItem();
         gpsSearch = new javax.swing.JMenuItem();
-        jcdSearch = new javax.swing.JMenuItem();
-        jpegCoeffSearch = new javax.swing.JMenuItem();
-        colorhistSearch = new javax.swing.JMenuItem();
-        scSearch = new javax.swing.JMenuItem();
+
         rerankMenu = new javax.swing.JMenu();
         rerankFeature = new javax.swing.JMenuItem();
         rerankLsa = new javax.swing.JMenuItem();
@@ -287,41 +292,41 @@ public class LireDemoFrame extends javax.swing.JFrame {
         });
         sameSearchMenu.add(searchMpeg7Descriptors);
 
-        searchColorLayout.setText("MPEG-7 color layout");
-        searchColorLayout.setActionCommand("cl");
-        searchColorLayout.addActionListener(new java.awt.event.ActionListener() {
+        clSearch.setText("MPEG-7 color layout");
+        clSearch.setActionCommand("cl");
+        clSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchMpeg7DescriptorsActionPerformed(evt);
             }
         });
-        sameSearchMenu.add(searchColorLayout);
+        sameSearchMenu.add(clSearch);
 
-        searchEdgeHistogram.setText("MPEG-7 edge histogram");
-        searchEdgeHistogram.setActionCommand("eh");
-        searchEdgeHistogram.addActionListener(new java.awt.event.ActionListener() {
+        ehSearch.setText("MPEG-7 edge histogram");
+        ehSearch.setActionCommand("eh");
+        ehSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchMpeg7DescriptorsActionPerformed(evt);
             }
         });
-        sameSearchMenu.add(searchEdgeHistogram);
+        sameSearchMenu.add(ehSearch);
 
-        searchScalableColor.setText("MPEG-7 scalable color");
-        searchScalableColor.setActionCommand("sc");
-        searchScalableColor.addActionListener(new java.awt.event.ActionListener() {
+        scSearch.setText("MPEG-7 scalable color");
+        scSearch.setActionCommand("sc");
+        scSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchMpeg7DescriptorsActionPerformed(evt);
             }
         });
-        sameSearchMenu.add(searchScalableColor);
+        sameSearchMenu.add(scSearch);
 
-        searchAutoColorCorrelation.setText("Auto color correlogram");
-        searchAutoColorCorrelation.setActionCommand("acc");
-        searchAutoColorCorrelation.addActionListener(new java.awt.event.ActionListener() {
+        accSearch.setText("Auto color correlogram");
+        accSearch.setActionCommand("acc");
+        accSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchMpeg7DescriptorsActionPerformed(evt);
             }
         });
-        sameSearchMenu.add(searchAutoColorCorrelation);
+        sameSearchMenu.add(accSearch);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("Bundle"); // NOI18N
@@ -917,10 +922,11 @@ public class LireDemoFrame extends javax.swing.JFrame {
 
         jLabel14.setText("Re-ranking feature:");
 
-        selectboxRerankFeature.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Color Layout (MPEG-7)",
-                "Scalable Color (MPEG-7)", "Edge Histogram (MPEG-7)", "Auto Color Correlogram", "CEDD", "FCTH", "JCD",
-                "RGB Color Histogram", "Tamura Texture Features", "GaborTexture Features",
-                "JPEG Coefficients Histogram", "Joint Histogram", "Opponent Histogram", "Luminance Layout", "PHOG" }));
+        selectboxRerankFeature.setModel(new javax.swing.DefaultComboBoxModel(
+                new String[] { "Color Layout (MPEG-7)", "Scalable Color (MPEG-7)", "Edge Histogram (MPEG-7)",
+                        "Auto Color Correlogram", "CEDD", "FCTH", "JCD", "RGB Color Histogram",
+                        "Tamura Texture Features", "GaborTexture Features", "JPEG Coefficients Histogram", "SURF BoVW",
+                        "Joint Histogram", "Opponent Histogram", "Luminance Layout", "PHOG", "ACCID", "OCR", "GPS" }));
 
         javax.swing.GroupLayout optionsPanelLayout = new javax.swing.GroupLayout(optionsPanel);
         optionsPanel.setLayout(optionsPanelLayout);
@@ -1106,8 +1112,38 @@ public class LireDemoFrame extends javax.swing.JFrame {
         researchMenu.setText("Re-do search with ...");
         researchMenu.setEnabled(false);
 
-        accSearch.setAccelerator(
+        clSearch.setAccelerator(
                 javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.ALT_MASK));
+        clSearch.setText("Color Layout");
+        clSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithColorLayout(evt);
+            }
+        });
+        researchMenu.add(clSearch);
+
+        scSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.ALT_MASK));
+        scSearch.setText("Scalable Color");
+        scSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithScalableColor(evt);
+            }
+        });
+        researchMenu.add(scSearch);
+
+        ehSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.ALT_MASK));
+        ehSearch.setText("Edge Histogram");
+        ehSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithEdgeHistogram(evt);
+            }
+        });
+        researchMenu.add(ehSearch);
+
+        accSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.ALT_MASK));
         accSearch.setText("Auto Color Correlogram");
         accSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1117,7 +1153,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
         researchMenu.add(accSearch);
 
         ceddSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.ALT_MASK));
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_MASK));
         ceddSearch.setText("CEDD");
         ceddSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1126,28 +1162,8 @@ public class LireDemoFrame extends javax.swing.JFrame {
         });
         researchMenu.add(ceddSearch);
 
-        clSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.ALT_MASK));
-        clSearch.setText("Color Layout");
-        clSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchWithColorLayout(evt);
-            }
-        });
-        researchMenu.add(clSearch);
-
-        ehSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.ALT_MASK));
-        ehSearch.setText("Edge Histogram");
-        ehSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchWithEdgeHistogram(evt);
-            }
-        });
-        researchMenu.add(ehSearch);
-
         fcthSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_MASK));
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_6, java.awt.event.InputEvent.ALT_MASK));
         fcthSearch.setText("FCTH");
         fcthSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1156,8 +1172,108 @@ public class LireDemoFrame extends javax.swing.JFrame {
         });
         researchMenu.add(fcthSearch);
 
+        jcdSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.ALT_MASK));
+        jcdSearch.setText("JCD");
+        jcdSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithJcd(evt);
+            }
+        });
+        researchMenu.add(jcdSearch);
+
+        chSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_8, java.awt.event.InputEvent.ALT_MASK));
+        chSearch.setText("RGB Color Histogram");
+        chSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithColorHist(evt);
+            }
+        });
+        researchMenu.add(chSearch);
+
+        ttSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_9, java.awt.event.InputEvent.ALT_MASK));
+        ttSearch.setText("Tamura Texture Features");
+        ttSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithTamura(evt);
+            }
+        });
+        researchMenu.add(ttSearch);
+
+        gtSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
+        gtSearch.setText("Garbor Texture Features");
+        gtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithGarbor(evt);
+            }
+        });
+        researchMenu.add(gtSearch);
+
+        jpegchSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.ALT_MASK));
+        jpegchSearch.setText("JPEG Coefficient Histogram");
+        jpegchSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithJpegCoeffs(evt);
+            }
+        });
+        researchMenu.add(jpegchSearch);
+
+        jhSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
+        jhSearch.setText("Joint Histogram");
+        jhSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithJointHistogram(evt);
+            }
+        });
+        researchMenu.add(jhSearch);
+
+        ohSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        ohSearch.setText("Opponent Histogram");
+        ohSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithOpponentHistogram(evt);
+            }
+        });
+        researchMenu.add(ohSearch);
+
+        llSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
+        llSearch.setText("Luminance Layout");
+        llSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithLuminanceLayout(evt);
+            }
+        });
+        researchMenu.add(llSearch);
+
+        phogSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
+        phogSearch.setText("PHOG");
+        phogSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithPHOG(evt);
+            }
+        });
+        researchMenu.add(phogSearch);
+
+        accidSearch.setAccelerator(
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
+        accidSearch.setText("ACCID");
+        accidSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithACCID(evt);
+            }
+        });
+        researchMenu.add(accidSearch);
+
         ocrSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_MASK));
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK));
         ocrSearch.setText("OCR");
         ocrSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1167,7 +1283,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
         researchMenu.add(ocrSearch);
 
         gpsSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_MASK));
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK));
         gpsSearch.setText("GPS");
         gpsSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1175,46 +1291,6 @@ public class LireDemoFrame extends javax.swing.JFrame {
             }
         });
         researchMenu.add(gpsSearch);
-
-        jcdSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_6, java.awt.event.InputEvent.ALT_MASK));
-        jcdSearch.setText("JCD");
-        jcdSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchWithJcd(evt);
-            }
-        });
-        researchMenu.add(jcdSearch);
-
-        jpegCoeffSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_7, java.awt.event.InputEvent.ALT_MASK));
-        jpegCoeffSearch.setText("JPEG Coefficient Histogram");
-        jpegCoeffSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchWithJpegCoeffs(evt);
-            }
-        });
-        researchMenu.add(jpegCoeffSearch);
-
-        colorhistSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_8, java.awt.event.InputEvent.ALT_MASK));
-        colorhistSearch.setText("RGB Color Histogram");
-        colorhistSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchWithColorHist(evt);
-            }
-        });
-        researchMenu.add(colorhistSearch);
-
-        scSearch.setAccelerator(
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_9, java.awt.event.InputEvent.ALT_MASK));
-        scSearch.setText("Scalable Color");
-        scSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchWithScalableColor(evt);
-            }
-        });
-        researchMenu.add(scSearch);
 
         devMenu.add(researchMenu);
 
@@ -1388,15 +1464,44 @@ public class LireDemoFrame extends javax.swing.JFrame {
         String command = evt.getActionCommand();
         if (command.equals("all")) {
             selectboxDocumentBuilder.setSelectedIndex(0);
-        } else if (command.equals("eh")) {
-            selectboxDocumentBuilder.setSelectedIndex(2);
-        } else if (command.equals("sc")) {
-            selectboxDocumentBuilder.setSelectedIndex(1);
         } else if (command.equals("cl")) {
+            selectboxDocumentBuilder.setSelectedIndex(1);
+        } else if (command.equals("sc")) {
+            selectboxDocumentBuilder.setSelectedIndex(2);
+        } else if (command.equals("eh")) {
             selectboxDocumentBuilder.setSelectedIndex(3);
         } else if (command.equals("acc")) {
             selectboxDocumentBuilder.setSelectedIndex(4);
+        } else if (command.equals("cedd")) {
+            selectboxDocumentBuilder.setSelectedIndex(5);
+        } else if (command.equals("fcth")) {
+            selectboxDocumentBuilder.setSelectedIndex(6);
+        } else if (command.equals("jcd")) {
+            selectboxDocumentBuilder.setSelectedIndex(7);
+        } else if (command.equals("sch")) {
+            selectboxDocumentBuilder.setSelectedIndex(8);
+        } else if (command.equals("tt")) {
+            selectboxDocumentBuilder.setSelectedIndex(9);
+        } else if (command.equals("gt")) {
+            selectboxDocumentBuilder.setSelectedIndex(10);
+        } else if (command.equals("jpegch")) {
+            selectboxDocumentBuilder.setSelectedIndex(11);
+        } else if (command.equals("jh")) {
+            selectboxDocumentBuilder.setSelectedIndex(13);
+        } else if (command.equals("oh")) {
+            selectboxDocumentBuilder.setSelectedIndex(14);
+        } else if (command.equals("ll")) {
+            selectboxDocumentBuilder.setSelectedIndex(15);
+        } else if (command.equals("phog")) {
+            selectboxDocumentBuilder.setSelectedIndex(16);
+        } else if (command.equals("accid")) {
+            selectboxDocumentBuilder.setSelectedIndex(17);
+        } else if (command.equals("ocr")) {
+            selectboxDocumentBuilder.setSelectedIndex(18);
+        } else if (command.equals("gps")) {
+            selectboxDocumentBuilder.setSelectedIndex(19);
         }
+
         // search for document in selected row ...
         int row = 0;
         if (resultsTable.getSelectedRow() > -1) {
@@ -1767,60 +1872,95 @@ public class LireDemoFrame extends javax.swing.JFrame {
         buttonBackToOptionsActionPerformed(evt);
     }// GEN-LAST:event_viewMenuOptionsActionPerformed
 
-    private void searchWithJcd(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJcd
-        selectboxDocumentBuilder.setSelectedIndex(6);
+    private void searchWithColorLayout(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithColorLayout
+        selectboxDocumentBuilder.setSelectedIndex(1);
         searchForDocument(0);
-    }// GEN-LAST:event_searchWithJcd
+    }// GEN-LAST:event_searchWithColorLayout
+
+    private void searchWithScalableColor(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithScalableColor
+        selectboxDocumentBuilder.setSelectedIndex(2);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithScalableColor
+
+    private void searchWithEdgeHistogram(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithEdgeHistogram
+        selectboxDocumentBuilder.setSelectedIndex(3);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithEdgeHistogram
 
     private void searchWithAcc(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithAcc
-        selectboxDocumentBuilder.setSelectedIndex(3);
+        selectboxDocumentBuilder.setSelectedIndex(4);
         searchForDocument(0);
     }// GEN-LAST:event_searchWithAcc
 
     private void searchWithCedd(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithCedd
-        selectboxDocumentBuilder.setSelectedIndex(4);
+        selectboxDocumentBuilder.setSelectedIndex(5);
         searchForDocument(0);
     }// GEN-LAST:event_searchWithCedd
-
+    
     private void searchWithFCTH(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithFCTH
-        selectboxDocumentBuilder.setSelectedIndex(5);
+        selectboxDocumentBuilder.setSelectedIndex(6);
         searchForDocument(0);
     }// GEN-LAST:event_searchWithFCTH
 
-    private void searchWithOCR(java.awt.event.ActionEvent evt) {
+    private void searchWithJcd(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJcd
+        selectboxDocumentBuilder.setSelectedIndex(7);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithJcd
+
+    private void searchWithColorHist(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithColorHist
+        selectboxDocumentBuilder.setSelectedIndex(8);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithColorHist    
+
+    private void searchWithTamura(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithColorHist
+        selectboxDocumentBuilder.setSelectedIndex(9);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithTamura
+    
+    private void searchWithGarbor(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithColorHist
+        selectboxDocumentBuilder.setSelectedIndex(10);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithGarbor
+
+    private void searchWithJpegCoeffs(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJpegCoeffs
+        selectboxDocumentBuilder.setSelectedIndex(11);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithJpegCoeffs
+
+    private void searchWithJointHistogram(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJpegCoeffs
+        selectboxDocumentBuilder.setSelectedIndex(13);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithJointHistogram
+
+    private void searchWithOpponentHistogram(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJpegCoeffs
+        selectboxDocumentBuilder.setSelectedIndex(14);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithOpponentHistogram
+
+    private void searchWithLuminanceLayout(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJpegCoeffs
+        selectboxDocumentBuilder.setSelectedIndex(15);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithLuminanceLayout
+
+    private void searchWithPHOG(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJpegCoeffs
+        selectboxDocumentBuilder.setSelectedIndex(16);
+        searchForDocument(0);
+    }// GEN-LAST:event_searchWithPHOG
+
+    private void searchWithACCID(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJpegCoeffs
         selectboxDocumentBuilder.setSelectedIndex(17);
         searchForDocument(0);
-    }
+    }// GEN-LAST:event_searchWithACCID
 
-    private void searchWithGPS(java.awt.event.ActionEvent evt) {
+    private void searchWithOCR(java.awt.event.ActionEvent evt) {
         selectboxDocumentBuilder.setSelectedIndex(18);
         searchForDocument(0);
     }
 
-    private void searchWithColorHist(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithColorHist
-        selectboxDocumentBuilder.setSelectedIndex(7);
+    private void searchWithGPS(java.awt.event.ActionEvent evt) {
+        selectboxDocumentBuilder.setSelectedIndex(19);
         searchForDocument(0);
-    }// GEN-LAST:event_searchWithColorHist
-
-    private void searchWithColorLayout(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithColorLayout
-        selectboxDocumentBuilder.setSelectedIndex(0);
-        searchForDocument(0);
-    }// GEN-LAST:event_searchWithColorLayout
-
-    private void searchWithEdgeHistogram(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithEdgeHistogram
-        selectboxDocumentBuilder.setSelectedIndex(2);
-        searchForDocument(0);
-    }// GEN-LAST:event_searchWithEdgeHistogram
-
-    private void searchWithJpegCoeffs(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithJpegCoeffs
-        selectboxDocumentBuilder.setSelectedIndex(10);
-        searchForDocument(0);
-    }// GEN-LAST:event_searchWithJpegCoeffs
-
-    private void searchWithScalableColor(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_searchWithScalableColor
-        selectboxDocumentBuilder.setSelectedIndex(1);
-        searchForDocument(0);
-    }// GEN-LAST:event_searchWithScalableColor
+    }
 
     private void rerankFeatureActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_rerankFeatureActionPerformed
         RerankFilter filter = null;
@@ -2110,7 +2250,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem accSearch;
+
     private javax.swing.JMenu bovwMenu;
     private javax.swing.JPanel browseImageContainerPanel;
     private liredemo.ImagePanel browseImagePanel;
@@ -2132,18 +2272,31 @@ public class LireDemoFrame extends javax.swing.JFrame {
     private javax.swing.JButton buttonSwitchOptions;
     private javax.swing.JButton buttonSwitchSearch;
     private javax.swing.JPanel cardPanel;
-    private javax.swing.JMenuItem ceddSearch;
     public javax.swing.JCheckBox checkBoxAddToExisintgIndex;
     private javax.swing.JCheckBox checkboxAvoidDuplicates;
     private javax.swing.JCheckBox checkboxMosaicAdvanceOptions;
-    private javax.swing.JMenuItem clSearch;
-    private javax.swing.JMenuItem colorhistSearch;
     private javax.swing.JPanel controlPane;
     private javax.swing.JMenu devMenu;
+
+    private javax.swing.JMenuItem clSearch;
+    private javax.swing.JMenuItem scSearch;
     private javax.swing.JMenuItem ehSearch;
+    private javax.swing.JMenuItem accSearch;
+    private javax.swing.JMenuItem ceddSearch;
     private javax.swing.JMenuItem fcthSearch;
+    private javax.swing.JMenuItem jcdSearch;
+    private javax.swing.JMenuItem chSearch;
+    private javax.swing.JMenuItem ttSearch;
+    private javax.swing.JMenuItem gtSearch;
+    private javax.swing.JMenuItem jpegchSearch;
+    private javax.swing.JMenuItem jhSearch;
+    private javax.swing.JMenuItem ohSearch;
+    private javax.swing.JMenuItem llSearch;
+    private javax.swing.JMenuItem phogSearch;
+    private javax.swing.JMenuItem accidSearch;
     private javax.swing.JMenuItem ocrSearch;
     private javax.swing.JMenuItem gpsSearch;
+
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem fileMenuExit;
     private javax.swing.JMenuBar frameMenu;
@@ -2177,8 +2330,6 @@ public class LireDemoFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenuItem jcdSearch;
-    private javax.swing.JMenuItem jpegCoeffSearch;
     private javax.swing.JLabel labelDocCount;
     private javax.swing.JLabel labelMosaicSliderValue;
     private javax.swing.JLabel labelMosaicTitle;
@@ -2204,13 +2355,8 @@ public class LireDemoFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane resultsPane;
     private javax.swing.JTable resultsTable;
     private javax.swing.JMenu sameSearchMenu;
-    private javax.swing.JMenuItem scSearch;
-    private javax.swing.JMenuItem searchAutoColorCorrelation;
-    private javax.swing.JMenuItem searchColorLayout;
-    private javax.swing.JMenuItem searchEdgeHistogram;
     private javax.swing.JMenuItem searchMpeg7Descriptors;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JMenuItem searchScalableColor;
     public javax.swing.JComboBox selectboxDocumentBuilder;
     private javax.swing.JComboBox selectboxRerankFeature;
     private javax.swing.JSpinner spinnerCurrentDocNum;

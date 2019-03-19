@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
-import com.drew.lang.Rational;
+import com.drew.lang.GeoLocation;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.GpsDirectory;
 import net.semanticmetadata.lire.imageanalysis.features.LireFeature;
@@ -25,11 +25,16 @@ public class GPS implements net.semanticmetadata.lire.imageanalysis.features.Glo
 
     @Override
     public byte[] getByteArrayRepresentation() {
+        if (this.coordinates == null)
+            return null;
         return SerializationUtils.toByteArray(this.coordinates);
     }
 
     @Override
     public double getDistance(LireFeature feature) {
+        if (this.coordinates == null)
+            return Double.MAX_VALUE;
+
         List<Double> coordinates = Arrays.stream(this.coordinates).boxed().collect(Collectors.toList());
         List<Double> coordinates_to_compare = Arrays
                 .stream(SerializationUtils.toDoubleArray(feature.getByteArrayRepresentation())).boxed()
@@ -68,6 +73,11 @@ public class GPS implements net.semanticmetadata.lire.imageanalysis.features.Glo
 
         double[] coordinates = new double[] { latitude, longitude };
 
+        if (this.coordinates == null) {
+            this.coordinates = coordinates;
+            return;
+        }
+
         if (offset == 0 && length > 0) {
             this.coordinates[offset] = coordinates[offset];
 
@@ -81,7 +91,7 @@ public class GPS implements net.semanticmetadata.lire.imageanalysis.features.Glo
 
     @Override
     public double[] getFeatureVector() {
-        return this.coordinates;
+        return this.coordinates != null ? this.coordinates : null;
     }
 
     @Override
@@ -89,27 +99,29 @@ public class GPS implements net.semanticmetadata.lire.imageanalysis.features.Glo
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         Metadata metadata;
         try {
-            System.out.println("GPS ------------------------------");
+            System.out.println("[GPS] Extracting...");
             ImageIO.write(image, "png", output);
             metadata = ImageMetadataReader
                     .readMetadata(new ByteArrayInputStream(output.toByteArray(), 0, output.size()));
             final GpsDirectory gps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
 
-            final Rational[] lat = gps.getRationalArray(GpsDirectory.TAG_LATITUDE);
-            final double latitude = lat[0].doubleValue() + lat[1].doubleValue() / 60 + lat[2].doubleValue() / 3600;
-            final Rational[] lng = gps.getRationalArray(GpsDirectory.TAG_LONGITUDE);
-            final double longitude = lng[0].doubleValue() + lng[1].doubleValue() / 60 + lng[2].doubleValue() / 3600;
+            if (gps == null) {
+                System.out.println("[GPS] Tags not found");
+                this.coordinates = null;
+                return;
+            }
 
-            System.out.println("Extracting GPS...");
-            System.out.println("Latitude: " + latitude + ", Longitude: " + longitude);
-            System.out.println("GPS ------------------------------");
+            System.out.println("[GPS] Getting location...");
+            GeoLocation location = gps.getGeoLocation();
+            this.coordinates = new double[] { location.getLatitude(), location.getLongitude() };
 
-            this.coordinates = new double[] { latitude, longitude };
-
+            System.out.println("[GPS] Latitude: " + coordinates[0] + ", Longitude: " + coordinates[1]);
+            System.out.println("[GPS] Double[]: ");
             System.out.println(SerializationUtils.toString(this.coordinates));
-            System.out.println("GPS ------------------------------");
 
         } catch (ImageProcessingException | IOException e) {
+            System.out.println("[GPS] Something went wrong");
+            System.out.println(e);
             e.printStackTrace();
         }
     }

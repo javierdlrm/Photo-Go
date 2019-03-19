@@ -33,7 +33,6 @@ package liredemo.indexing;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.jpeg.JpegProcessingException;
 import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.ExifReader;
 import com.drew.metadata.exif.ExifThumbnailDirectory;
 import net.semanticmetadata.lire.builders.DocumentBuilder;
 import org.apache.lucene.document.Document;

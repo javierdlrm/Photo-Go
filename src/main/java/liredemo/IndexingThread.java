@@ -137,7 +137,7 @@ public class IndexingThread extends Thread {
             pin.addExtractor(SimpleColorHistogram.class);
             pin.addExtractor(Tamura.class);
             pin.addExtractor(Gabor.class);
-            pin.addExtractor(COMO.class);
+            pin.addExtractor(JpegCoefficientHistogram.class);
             // pin.addExtractor(BOVW.class);
             pin.addExtractor(JointHistogram.class);
             pin.addExtractor(OpponentHistogram.class);

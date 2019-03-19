@@ -2,21 +2,21 @@ package liredemo;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
-import java.awt.image.ImageProducer;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
-
-import javax.swing.GrayFilter;
 
 import net.semanticmetadata.lire.imageanalysis.features.GlobalFeature;
 import net.semanticmetadata.lire.imageanalysis.features.LireFeature;
 import net.semanticmetadata.lire.utils.SerializationUtils;
 import net.sourceforge.tess4j.Tesseract1;
 import net.sourceforge.tess4j.TesseractException;
+
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.awt.Toolkit;
+import javax.swing.GrayFilter;
 
 public class OCR implements GlobalFeature {
 
@@ -85,33 +85,27 @@ public class OCR implements GlobalFeature {
 
     @Override
     public void extract(BufferedImage image) {
-        System.out.println("------------------------------------------");
-        System.out.println("--- Extract: analyzing image with OCR");
+        System.out.println("[OCR] Extracting...");
 
         Tesseract1 instance = new Tesseract1();
         try {
-            System.out.println("NORMAL ----- : " + instance.doOCR(image));
+            // System.out.println("[OCR] From normal image: " + instance.doOCR(image));
             
-            ImageFilter filter = new GrayFilter(true, 50);  
-            ImageProducer producer = new FilteredImageSource(image.getSource(), filter);  
-            Image gray_image = Toolkit.getDefaultToolkit().createImage(producer);  
-            System.out.println("GRAYSCALE ----- : " + instance.doOCR(toBufferedImage(gray_image)));
+            // ImageFilter filter = new GrayFilter(true, 50);  
+            // ImageProducer producer = new FilteredImageSource(image.getSource(), filter);  
+            // Image gray_image = Toolkit.getDefaultToolkit().createImage(producer);  
+            // System.out.println("[OCR] From grayscaled image: " + instance.doOCR(toBufferedImage(gray_image)));
 
             BufferedImage bw_image = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
             text = instance.doOCR(toBufferedImage(bw_image));
-            System.out.println("BlackWhite ----- : " + text);
+            // System.out.println("[OCR] From black/white image: " + text);
 
         } catch (TesseractException e) {
 
-            System.out.println("KABUUUUUUUMMMMMM!!!!");
+            System.out.println("[OCR] Something went wrong");
             System.out.println(e);
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        System.out.println("--- Text: " + text);
-        System.out.println("------------------------------");
-
     }
 
     /**
