@@ -20,7 +20,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="searchColorLayout">
+        <MenuItem class="javax.swing.JMenuItem" name="clSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="MPEG-7 color layout"/>
             <Property name="actionCommand" type="java.lang.String" value="cl"/>
@@ -29,16 +29,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="searchEdgeHistogram">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="MPEG-7 edge histogram"/>
-            <Property name="actionCommand" type="java.lang.String" value="eh"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
-          </Events>
-        </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="searchScalableColor">
+        <MenuItem class="javax.swing.JMenuItem" name="scSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="MPEG-7 scalable color"/>
             <Property name="actionCommand" type="java.lang.String" value="sc"/>
@@ -47,7 +38,16 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="searchAutoColorCorrelation">
+        <MenuItem class="javax.swing.JMenuItem" name="ehSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MPEG-7 edge histogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="eh"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="accSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
             <Property name="actionCommand" type="java.lang.String" value="acc"/>
@@ -56,6 +56,133 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="ceddSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="cedd"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="fcthSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="fcth"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jcdSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="jcd"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="chSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="ch"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="ttSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="tt"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="gtSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="gt"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jpegchSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="jpegch"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jhSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="jh"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="ohSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="oh"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="llSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="ll"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="phogSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="phog"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="accidSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="accid"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="ocrSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="ocr"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="gpsSearch">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auto color correlogram"/>
+            <Property name="actionCommand" type="java.lang.String" value="gps"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchMpeg7DescriptorsActionPerformed"/>
+          </Events>
+        </MenuItem>
+
       </SubComponents>
     </Container>
     <Component class="javax.swing.ButtonGroup" name="mosaicButtons">
