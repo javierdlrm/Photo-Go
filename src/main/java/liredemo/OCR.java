@@ -91,14 +91,16 @@ public class OCR implements GlobalFeature {
         try {
             // System.out.println("[OCR] From normal image: " + instance.doOCR(image));
             
-            // ImageFilter filter = new GrayFilter(true, 50);  
-            // ImageProducer producer = new FilteredImageSource(image.getSource(), filter);  
-            // Image gray_image = Toolkit.getDefaultToolkit().createImage(producer);  
-            // System.out.println("[OCR] From grayscaled image: " + instance.doOCR(toBufferedImage(gray_image)));
+            ImageFilter filter = new GrayFilter(true, 50);  
+            ImageProducer producer = new FilteredImageSource(image.getSource(), filter);  
+            Image gray_image = Toolkit.getDefaultToolkit().createImage(producer);  
+            this.text = instance.doOCR(toBufferedImage(gray_image));
+            System.out.println("[OCR] From grayscaled image: " + this.text);
 
-            BufferedImage bw_image = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
-            text = instance.doOCR(toBufferedImage(bw_image));
-            System.out.println("[OCR] From black/white image: " + text);
+            // BufferedImage bw_image = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+            // this.text = instance.doOCR(bw_image);
+            // System.out.println("[OCR] From black/white image: ");
+            // System.out.println(this.text);
 
         } catch (TesseractException e) {
 

@@ -16,7 +16,9 @@ import javax.imageio.ImageIO;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.lang.GeoLocation;
+import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
+import com.drew.metadata.Tag;
 import com.drew.metadata.exif.GpsDirectory;
 
 import net.semanticmetadata.lire.imageanalysis.features.GlobalFeature;
@@ -32,6 +34,7 @@ public class GPS implements GlobalFeature {
     public byte[] getByteArrayRepresentation() {
         if (this.coordinates == null)
             return null;
+    
         return SerializationUtils.toByteArray(this.coordinates);
     }
 
@@ -40,13 +43,20 @@ public class GPS implements GlobalFeature {
         if (this.coordinates == null)
             return Double.MAX_VALUE;
 
-        List<Double> coordinates = Arrays.stream(this.coordinates).boxed().collect(Collectors.toList());
-        List<Double> coordinates_to_compare = Arrays
-                .stream(SerializationUtils.toDoubleArray(feature.getByteArrayRepresentation())).boxed()
-                .collect(Collectors.toList());
-        coordinates.retainAll(coordinates_to_compare);
+        double[] coords = SerializationUtils.toDoubleArray(feature.getByteArrayRepresentation());
+        double R = 6371e3; // metres
+        double l1 = Math.toRadians(this.coordinates[0]);
+        double l2 = Math.toRadians(coords[0]);
+        double Ao = Math.toRadians(coords[0] - this.coordinates[0]);
+        double Aa = Math.toRadians(coords[1] - this.coordinates[1]);
 
-        return this.coordinates.length - coordinates.size();
+        double a = Math.sin(Ao / 2) * Math.sin(Ao / 2) + Math.cos(l1) * Math.cos(l2) * Math.sin(Aa / 2) * Math.sin(Aa / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        double d = R * c;
+        double km = 2000;
+
+        return Math.floor(d / 2000);
     }
 
     @Override
@@ -106,19 +116,40 @@ public class GPS implements GlobalFeature {
             Metadata metadata;
 
             System.out.println("[GPS] Extracting...");
-            if (ImageIO.write(image, "jpg", output)) {
+
+            if (ImageIO.write(image, "jpeg", output)) {
                 ByteArrayInputStream inputStream = new ByteArrayInputStream(output.toByteArray(), 0, output.size());
                 metadata = ImageMetadataReader.readMetadata(inputStream);
+
+                Iterable<Directory> directories = metadata.getDirectories();
+                for (Directory dir : directories) {
+                    Collection<Tag> tags = dir.getTags();
+                    for (Tag tag : tags) {
+                        System.out.println("[GPS] Directory: " + tag.getDirectoryName() + ", Tag: " + tag.getTagName()
+                                + ", Value: " + tag.getDescription());
+                    }
+                }
+
+                final GpsDirectory gps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
                 final Collection<GpsDirectory> gpss = metadata.getDirectoriesOfType(GpsDirectory.class);
+
+                if (gps == null) {
+                    System.out.println("[GPS] Tags not found");
+                    this.coordinates = new double[] { 0, 0 };
+                } else {
+                    System.out.println("[GPS] Getting location...");
+                    GeoLocation location = gps.getGeoLocation();
+                    this.coordinates = new double[] { location.getLatitude(), location.getLongitude() };
+                    System.out.println("[GPS] Latitude: " + coordinates[0] + ", Longitude: " + coordinates[1]);
+                }
 
                 if (gpss == null || gpss.size() == 0) {
                     System.out.println("[GPS] Tags not found");
                     this.coordinates = new double[] { 0, 0 };
                 } else {
-
-                    for (GpsDirectory gps : gpss) {
+                    for (GpsDirectory gp : gpss) {
                         System.out.println("[GPS] Getting location...");
-                        GeoLocation location = gps.getGeoLocation();
+                        GeoLocation location = gp.getGeoLocation();
                         this.coordinates = new double[] { location.getLatitude(), location.getLongitude() };
                         System.out.println("[GPS] Latitude: " + coordinates[0] + ", Longitude: " + coordinates[1]);
                     }
@@ -137,42 +168,4 @@ public class GPS implements GlobalFeature {
             e.printStackTrace();
         }
     }
-
-    // private void nacti(final ByteArrayInputStream istm) throws IOException {
-
-    // BufferedInputStream bis;
-    // if (istm instanceof BufferedInputStream) {
-    // bis = (BufferedInputStream) istm;
-    // } else {
-    // bis = new BufferedInputStream(istm);
-    // }
-    // Metadata imageMetadata;
-    // try {
-    // imageMetadata = ImageMetadataReader.readMetadata(bis, true);
-    // } catch (final ImageProcessingException e) {
-    // return;
-    // }
-    // final GpsDirectory gpsDirectory =
-    // imageMetadata.getDirectory(GpsDirectory.class);
-    // if (gpsDirectory == null) {
-    // log.info("Image has no GPS metadata.");
-    // return;
-    // }
-    // final GeoLocation exifLocation = gpsDirectory.getGeoLocation();
-    // if (exifLocation != null) {
-    // final GpxWpt gpxWpt = new GpxWpt();
-    // gpxWpt.wgs = new Wgs(exifLocation.getLatitude(),
-    // exifLocation.getLongitude());
-    // gpxWpt.name =
-    // Iterables.getLast(Arrays.asList(name.split(Pattern.quote(File.separator))),
-    // "");
-    // gpxWpt.link.href = name;
-    // gpxWpt.desc = "EXIF coordinates";
-    // gpxWpt.type = "pic";
-    // gpxWpt.sym = "Photo";
-    // builder.addGpxWpt(gpxWpt);
-    // } else {
-    // log.info("Image {} has GPS metadata, but no lat/lon information.", name);
-    // }
-    // }
 }

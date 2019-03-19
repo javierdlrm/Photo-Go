@@ -49,6 +49,7 @@ import liredemo.indexing.MetadataBuilder;
 import net.semanticmetadata.lire.aggregators.BOVW;
 import net.semanticmetadata.lire.imageanalysis.features.global.*;
 import net.semanticmetadata.lire.imageanalysis.features.global.joint.JointHistogram;
+import net.semanticmetadata.lire.indexers.parallel.ImagePreprocessor;
 import net.semanticmetadata.lire.indexers.parallel.ParallelIndexer;
 
 import javax.imageio.ImageIO;
@@ -190,7 +191,7 @@ public class IndexingThread extends Thread {
         File[] f = directory.listFiles();
         for (File file : f) {
             if (file != null
-                    && (file.getName().toLowerCase().endsWith(".jpg") || file.getName().toLowerCase().endsWith(".png"))
+                    && (file.getName().toLowerCase().endsWith(".jpeg") || file.getName().toLowerCase().endsWith(".png"))
                     && !file.getName().startsWith("tn_")) {
                 resultList.add(file.getCanonicalPath());
             }
@@ -214,11 +215,11 @@ public class IndexingThread extends Thread {
         try {
             Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
             ExifThumbnailDirectory tDir = metadata.getFirstDirectoryOfType(ExifThumbnailDirectory.class);
-            if (tDir.hasThumbnailData()) {
-                byte[] thumb = tDir.getThumbnailData();
-                if (thumb != null)
-                    image = ImageIO.read(new ByteArrayInputStream(thumb));
-            }
+            // if (tDir.hasThumbnailData()) {
+            //     byte[] thumb = tDir.getThumbnailData();
+            //     if (thumb != null)
+            //         image = ImageIO.read(new ByteArrayInputStream(thumb));
+            // }
             // System.out.print("Read from thumbnail data ... ");
             // System.out.println(image.getWidth() + " x " + image.getHeight());
         } catch (JpegProcessingException e) {

@@ -139,14 +139,14 @@ public class SearchResultsTableModel extends DefaultTableModel {
                 String fileIdentifier = reader.document(hits.documentID(i)).getField(DocumentBuilder.FIELD_NAME_IDENTIFIER).stringValue();
                 if (!fileIdentifier.startsWith("http:")) {
                     // check isf it is a jpg file ...
-                    if (fileIdentifier.toLowerCase().endsWith(".jpg")) {
+                    if (fileIdentifier.toLowerCase().endsWith(".jpeg")) {
                         Metadata metadata = ImageMetadataReader.readMetadata(new FileInputStream(fileIdentifier));
                         ExifSubIFDDirectory exifDirectory = metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
                         ExifThumbnailDirectory tDir = metadata.getFirstDirectoryOfType(ExifThumbnailDirectory.class);
                         if (tDir !=null) {
-                            if (tDir.hasThumbnailData()) {
-                                img = ImageIO.read(new ByteArrayInputStream(tDir.getThumbnailData()));
-                            }
+                            // if (tDir.hasThumbnailData()) {
+                            //     img = ImageIO.read(new ByteArrayInputStream(tDir.getThumbnailData()));
+                            // }
                         }
                     }
                     if (img == null) {

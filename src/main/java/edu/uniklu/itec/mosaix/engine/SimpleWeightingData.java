@@ -114,10 +114,10 @@ public final class SimpleWeightingData implements WeightingData {
         try {
             Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
             ExifThumbnailDirectory tDir = metadata.getFirstDirectoryOfType(ExifThumbnailDirectory.class);
-            if (tDir.hasThumbnailData()) {
-                byte[] thumb = tDir.getThumbnailData();
-                if (thumb != null) image = ImageIO.read(new ByteArrayInputStream(thumb));
-            }
+            // if (tDir.hasThumbnailData()) {
+            //     byte[] thumb = tDir.getThumbnailData();
+            //     if (thumb != null) image = ImageIO.read(new ByteArrayInputStream(thumb));
+            // }
         } catch (JpegProcessingException e) {
             System.err.println("Could not extract thumbnail");
             e.printStackTrace();

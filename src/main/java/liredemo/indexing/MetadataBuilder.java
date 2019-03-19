@@ -62,9 +62,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * Created by: Mathias Lux, mathias@juggle.at
- * Date: 18.02.2010
- * Time: 15:20:59
+ * Created by: Mathias Lux, mathias@juggle.at Date: 18.02.2010 Time: 15:20:59
  */
 public class MetadataBuilder implements DocumentBuilder {
 
@@ -85,9 +83,11 @@ public class MetadataBuilder implements DocumentBuilder {
                 prefix = dir.getName();
                 Collection<Tag> tags = dir.getTags();
                 for (Tag tag : tags) {
-                    // System.out.println(prefix+"-"+tag.getTagName()+" -> " + dir.getString(tag.getTagType()));
+                    // System.out.println(prefix+"-"+tag.getTagName()+" -> " +
+                    // dir.getString(tag.getTagType()));
                     // add to document:
-                    resultList.add(new TextField(prefix + "-" + tag.getTagName(), dir.getString(tag.getTagType()), Field.Store.YES));
+                    resultList.add(new TextField(prefix + "-" + tag.getTagName(), dir.getString(tag.getTagType()),
+                            Field.Store.YES));
                 }
             }
         } catch (JpegProcessingException e) {

@@ -160,7 +160,7 @@ public class ParallelIndexer implements Runnable {
 
         private BufferedImage readFile(String path) throws IOException {
             BufferedImage image = null;
-            if (path.toLowerCase().endsWith(".jpg")) {
+            if (path.toLowerCase().endsWith(".jpeg")) {
                 FileInputStream jpegFile = new FileInputStream(path);
                 try {
                     Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);

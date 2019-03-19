@@ -105,12 +105,12 @@ public class ImageFunctions {
 
     public void saveImage(BufferedImage bi, File file) {
         try {
-            if (file.getName().endsWith(".jpg") || file.getName().endsWith(".JPG")) {
-                ImageIO.write(bi, "jpg", file);
+            if (file.getName().endsWith(".jpeg") || file.getName().endsWith(".JPEG")) {
+                ImageIO.write(bi, "jpeg", file);
             } else {
                 System.out.println("umschreiben des files");
-                File newFile = new File(file.getAbsolutePath() + ".jpg");
-                ImageIO.write(bi, "jpg", newFile);
+                File newFile = new File(file.getAbsolutePath() + ".jpeg");
+                ImageIO.write(bi, "jpeg", newFile);
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -225,7 +225,7 @@ public class ImageFunctions {
         ArrayList<String> resultList = new ArrayList<String>(256);
         File[] f = directory.listFiles();
         for (File file : f) {
-            if (file != null && (file.getName().toLowerCase().endsWith(".jpg") || file.getName().toLowerCase().endsWith(".JPG")) && !file.getName().startsWith("tn_")) {
+            if (file != null && (file.getName().toLowerCase().endsWith(".jpeg") || file.getName().toLowerCase().endsWith(".JPEG")) && !file.getName().startsWith("tn_")) {
                 resultList.add(file.getCanonicalPath());
             }
             if (descendIntoSubDirectories && file.isDirectory()) {
