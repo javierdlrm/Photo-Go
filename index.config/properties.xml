@@ -2,24 +2,13 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>AllExtractors</comment>
-<entry key="1.extractor">net.semanticmetadata.lire.imageanalysis.features.global.ColorLayout</entry>
-<entry key="2.extractor">net.semanticmetadata.lire.imageanalysis.features.global.ScalableColor</entry>
-<entry key="3.extractor">net.semanticmetadata.lire.imageanalysis.features.global.EdgeHistogram</entry>
-<entry key="4.extractor">net.semanticmetadata.lire.imageanalysis.features.global.AutoColorCorrelogram</entry>
-<entry key="5.extractor">net.semanticmetadata.lire.imageanalysis.features.global.CEDD</entry>
-<entry key="6.extractor">net.semanticmetadata.lire.imageanalysis.features.global.FCTH</entry>
-<entry key="7.extractor">net.semanticmetadata.lire.imageanalysis.features.global.JCD</entry>
-<entry key="8.extractor">net.semanticmetadata.lire.imageanalysis.features.global.SimpleColorHistogram</entry>
+<entry key="4.extractor">net.semanticmetadata.lire.imageanalysis.features.global.LuminanceLayout</entry>
+<entry key="11.extractor">net.semanticmetadata.lire.imageanalysis.features.global.SimpleColorHistogram</entry>
+<entry key="2.extractor">net.semanticmetadata.lire.imageanalysis.features.global.Gabor</entry>
+<entry key="18.extractor">net.semanticmetadata.lire.imageanalysis.features.global.ScalableColor</entry>
 <entry key="9.extractor">net.semanticmetadata.lire.imageanalysis.features.global.Tamura</entry>
-<entry key="10.extractor">net.semanticmetadata.lire.imageanalysis.features.global.Gabor</entry>
-<entry key="11.extractor">net.semanticmetadata.lire.imageanalysis.features.global.JpegCoefficientHistogram</entry>
-<entry key="13.extractor">net.semanticmetadata.lire.imageanalysis.features.global.joint.JointHistogram</entry>
-<entry key="14.extractor">net.semanticmetadata.lire.imageanalysis.features.global.OpponentHistogram</entry>
-<entry key="15.extractor">net.semanticmetadata.lire.imageanalysis.features.global.LuminanceLayout</entry>
-<entry key="16.extractor">net.semanticmetadata.lire.imageanalysis.features.global.PHOG</entry>
-<entry key="17.extractor">net.semanticmetadata.lire.imageanalysis.features.global.ACCID</entry>
-<entry key="18.extractor">liredemo.OCR</entry>
-<entry key="19.extractor">liredemo.GPS</entry>
+<entry key="16.extractor">net.semanticmetadata.lire.imageanalysis.features.global.ACCID</entry>
+<entry key="7.extractor">liredemo.GPS</entry>
 <entry key="9">global</entry>
 <entry key="8">global</entry>
 <entry key="18">global</entry>
@@ -35,11 +24,22 @@
 <entry key="0.info.0">liredemo.indexing.MetadataBuilder</entry>
 <entry key="3">global</entry>
 <entry key="14">global</entry>
+<entry key="14.extractor">liredemo.OCR</entry>
 <entry key="2">global</entry>
 <entry key="13">global</entry>
 <entry key="1">global</entry>
 <entry key="12">global</entry>
 <entry key="0">info</entry>
+<entry key="5.extractor">net.semanticmetadata.lire.imageanalysis.features.global.AutoColorCorrelogram</entry>
 <entry key="11">global</entry>
 <entry key="10">global</entry>
+<entry key="12.extractor">net.semanticmetadata.lire.imageanalysis.features.global.OpponentHistogram</entry>
+<entry key="3.extractor">net.semanticmetadata.lire.imageanalysis.features.global.JCD</entry>
+<entry key="10.extractor">net.semanticmetadata.lire.imageanalysis.features.global.ColorLayout</entry>
+<entry key="1.extractor">net.semanticmetadata.lire.imageanalysis.features.global.PHOG</entry>
+<entry key="17.extractor">net.semanticmetadata.lire.imageanalysis.features.global.CEDD</entry>
+<entry key="8.extractor">net.semanticmetadata.lire.imageanalysis.features.global.FCTH</entry>
+<entry key="15.extractor">net.semanticmetadata.lire.imageanalysis.features.global.JpegCoefficientHistogram</entry>
+<entry key="6.extractor">net.semanticmetadata.lire.imageanalysis.features.global.joint.JointHistogram</entry>
+<entry key="13.extractor">net.semanticmetadata.lire.imageanalysis.features.global.EdgeHistogram</entry>
 </properties>
