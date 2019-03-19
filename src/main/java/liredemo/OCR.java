@@ -98,7 +98,7 @@ public class OCR implements GlobalFeature {
 
             BufferedImage bw_image = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
             text = instance.doOCR(toBufferedImage(bw_image));
-            // System.out.println("[OCR] From black/white image: " + text);
+            System.out.println("[OCR] From black/white image: " + text);
 
         } catch (TesseractException e) {
 
