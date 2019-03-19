@@ -10,14 +10,23 @@ dependencies {
     compile group: 'org.apache.lucene', name: 'lucene-queryparser', version: '6.4.0'
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
     compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+
     // https://mvnrepository.com/artifact/com.sangupta/jopensurf
     compile group: 'com.sangupta', name: 'jopensurf', version: '1.0.0'
+
     // https://mvnrepository.com/artifact/com.drewnoakes/metadata-extractor
     compile group: 'com.drewnoakes', name: 'metadata-extractor', version: '2.9.1'
     // compile group: 'com.drewnoakes', name: 'metadata-extractor', version: '2.3.1'
 
     // https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv
-    // compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '2.4.11-0.11'
+    // compile group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '4.0.1-1.4.4'
+
+    // https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/tesseract
+    // compile group: 'org.bytedeco.javacpp-presets', name: 'tesseract', version: '3.05.01-1.4.1'
+
+    // https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j
+    compile group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.3.1'
+
     compile fileTree(dir: 'lib', include: '*.jar')
     // runtime fileTree(dir: 'lib', include: '*.jar')
 }

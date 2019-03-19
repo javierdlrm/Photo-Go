@@ -255,6 +255,8 @@ public class LireDemoFrame extends javax.swing.JFrame {
         clSearch = new javax.swing.JMenuItem();
         ehSearch = new javax.swing.JMenuItem();
         fcthSearch = new javax.swing.JMenuItem();
+        ocrSearch = new javax.swing.JMenuItem();
+        gpsSearch = new javax.swing.JMenuItem();
         jcdSearch = new javax.swing.JMenuItem();
         jpegCoeffSearch = new javax.swing.JMenuItem();
         colorhistSearch = new javax.swing.JMenuItem();
@@ -882,7 +884,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Type of IndexSearcher:");
 
-        selectboxDocumentBuilder.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Color Layout (MPEG-7)", "Scalable Color (MPEG-7)", "Edge Histogram (MPEG-7)", "Auto Color Correlogram", "CEDD", "FCTH", "JCD", "RGB Color Histogram", "Tamura Texture Features", "GaborTexture Features", "JPEG Coefficients Histogram", "SURF BoVW", "Joint Histogram", "Opponent Histogram", "Luminance Layout", "PHOG", "ACCID", "COMO"}));
+        selectboxDocumentBuilder.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Color Layout (MPEG-7)", "Scalable Color (MPEG-7)", "Edge Histogram (MPEG-7)", "Auto Color Correlogram", "CEDD", "FCTH", "JCD", "RGB Color Histogram", "Tamura Texture Features", "GaborTexture Features", "JPEG Coefficients Histogram", "SURF BoVW", "Joint Histogram", "Opponent Histogram", "Luminance Layout", "PHOG", "ACCID", "OCR", "GPS"}));
         selectboxDocumentBuilder.setToolTipText(bundle.getString("options.tooltip.documentbuilderselection")); // NOI18N
         selectboxDocumentBuilder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1131,6 +1133,24 @@ public class LireDemoFrame extends javax.swing.JFrame {
             }
         });
         researchMenu.add(fcthSearch);
+
+        ocrSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_MASK));
+        ocrSearch.setText("OCR");
+        ocrSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithOCR(evt);
+            }
+        });
+        researchMenu.add(ocrSearch);
+
+        gpsSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.ALT_MASK));
+        gpsSearch.setText("GPS");
+        gpsSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchWithGPS(evt);
+            }
+        });
+        researchMenu.add(gpsSearch);
 
         jcdSearch.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_6, java.awt.event.InputEvent.ALT_MASK));
         jcdSearch.setText("JCD");
@@ -1394,6 +1414,8 @@ public class LireDemoFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonSwitchIndexActionPerformed
 
+
+    // START CODE NOT GENERATED
     private void initReader() {
         try {
             if (browseReader == null) {
@@ -1728,6 +1750,16 @@ public class LireDemoFrame extends javax.swing.JFrame {
         searchForDocument(0);
     }//GEN-LAST:event_searchWithFCTH
 
+    private void searchWithOCR(java.awt.event.ActionEvent evt) {
+        selectboxDocumentBuilder.setSelectedIndex(17);
+        searchForDocument(0);
+    }
+
+    private void searchWithGPS(java.awt.event.ActionEvent evt) {
+        selectboxDocumentBuilder.setSelectedIndex(18);
+        searchForDocument(0);
+    }
+
     private void searchWithColorHist(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchWithColorHist
         selectboxDocumentBuilder.setSelectedIndex(7);
         searchForDocument(0);
@@ -1782,6 +1814,10 @@ public class LireDemoFrame extends javax.swing.JFrame {
             filter = new RerankFilter(OpponentHistogram.class, DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM);
         } else if (selectboxRerankFeature.getSelectedIndex() == 13) {  // LuminanceLayout
             filter = new RerankFilter(LuminanceLayout.class, DocumentBuilder.FIELD_NAME_LUMINANCE_LAYOUT);
+        } else if (selectboxRerankFeature.getSelectedIndex() == 17) { // OCR
+            filter = new RerankFilter(OCR.class, new OCR().getFieldName());
+        } else if (selectboxRerankFeature.getSelectedIndex() == 18) { // GPS
+            filter = new RerankFilter(GPS.class, new GPS().getFieldName());
         } else if (selectboxRerankFeature.getSelectedIndex() >= 14) {  // PHOG
             filter = new RerankFilter(PHOG.class, DocumentBuilder.FIELD_NAME_PHOG);
         }
@@ -1857,7 +1893,11 @@ public class LireDemoFrame extends javax.swing.JFrame {
             filter = new LsaFilter(LuminanceLayout.class, DocumentBuilder.FIELD_NAME_LUMINANCE_LAYOUT);
         } else if (selectboxDocumentBuilder.getSelectedIndex() == 15) {  // PHOG
             filter = new LsaFilter(PHOG.class, DocumentBuilder.FIELD_NAME_PHOG);
-        } else if (selectboxDocumentBuilder.getSelectedIndex() >= 16) {  // PHOG
+        } else if (selectboxDocumentBuilder.getSelectedIndex() == 17) { // OCR
+            filter = new LsaFilter(OCR.class, new OCR().getFieldName());
+        } else if (selectboxDocumentBuilder.getSelectedIndex() == 18) { // GPS (Metadata)
+            filter = new LsaFilter(GPS.class, new GPS().getFieldName());
+        }else if (selectboxDocumentBuilder.getSelectedIndex() >= 16) {  // PHOG
             filter = new LsaFilter(ACCID.class, new ACCID().getFieldName());
         }
         try {
@@ -1964,6 +2004,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
 
     }
 
+    // TODO: Add searcher here
     private ImageSearcher getSearcher() {
         int numResults = 50;
         try {
@@ -2004,8 +2045,10 @@ public class LireDemoFrame extends javax.swing.JFrame {
             searcher = new GenericFastImageSearcher(numResults, PHOG.class);
         } else if (selectboxDocumentBuilder.getSelectedIndex() == 16) {
             searcher = new GenericFastImageSearcher(numResults, ACCID.class);
-        } else if (selectboxDocumentBuilder.getSelectedIndex() >= 17) {
-            searcher = new GenericFastImageSearcher(numResults, COMO.class);
+        } else if (selectboxDocumentBuilder.getSelectedIndex() == 17) {
+            searcher = new GenericFastImageSearcher(numResults, OCR.class);
+        } else if (selectboxDocumentBuilder.getSelectedIndex() == 18) {
+            searcher = new GenericFastImageSearcher(numResults, GPS.class);
         }
         return searcher;
     }
@@ -2054,6 +2097,8 @@ public class LireDemoFrame extends javax.swing.JFrame {
     private javax.swing.JMenu devMenu;
     private javax.swing.JMenuItem ehSearch;
     private javax.swing.JMenuItem fcthSearch;
+    private javax.swing.JMenuItem ocrSearch;
+    private javax.swing.JMenuItem gpsSearch;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem fileMenuExit;
     private javax.swing.JMenuBar frameMenu;
